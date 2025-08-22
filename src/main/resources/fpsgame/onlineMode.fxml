@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fpsgame.ui.OnlineModeController">
+   <children>
+      <Label fx:id="titleLabel" text="JavaFX FPS Game - Hello World!" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2E86AB;" />
+      
+      <HBox alignment="CENTER" spacing="10">
+         <children>
+            <Label text="Enter your name:" />
+            <TextField fx:id="nameField" promptText="Your name here..." prefWidth="200" />
+         </children>
+      </HBox>
+      
+      <HBox alignment="CENTER" spacing="10">
+         <children>
+            <Button fx:id="helloButton" onAction="#onHelloButtonClick" text="Say Hello" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 8 16;" />
+            <Button fx:id="clearButton" onAction="#onClearButtonClick" text="Clear" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-padding: 8 16;" />
+         </children>
+      </HBox>
+      
+      <Label fx:id="messageLabel" text="" style="-fx-font-size: 14px; -fx-text-fill: #333; -fx-font-weight: bold;" />
+      
+      <Separator />
+      
+      <VBox alignment="CENTER" spacing="5">
+         <children>
+            <Label text="FPS Game Module Info:" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            <Label fx:id="moduleLabel" text="Module: fpsgame" style="-fx-font-size: 12px; -fx-text-fill: #666;" />
+            <Label fx:id="statusLabel" text="Status: FXML Loaded Successfully!" style="-fx-font-size: 12px; -fx-text-fill: #4CAF50;" />
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <spacing>15</spacing>
+</VBox>

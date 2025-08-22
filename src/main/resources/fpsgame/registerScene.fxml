@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fpsgame.ui.RegisterController">
+   <children>
+      <AnchorPane layoutX="174.0" layoutY="44.0" prefHeight="319.0" prefWidth="252.0" style="-fx-background-color: rgba(38, 36, 33, 0.5);">
+         <children>
+            <TextField fx:id="usernameTextField" layoutX="57.0" layoutY="45.0" opacity="0.81" promptText="Username" />
+            <TextField fx:id="passwordTextField" layoutX="57.0" layoutY="89.0" opacity="0.81" promptText="Password" />
+            <TextField fx:id="emailTextField" layoutX="57.0" layoutY="179.0" opacity="0.8" promptText="Email" />
+            <Button fx:id="registerButton" layoutX="96.0" layoutY="236.0" mnemonicParsing="false" onAction="#onRegisterSubmit" text="Đăng ký" />
+            <Button fx:id="loginButton" layoutX="88.0" layoutY="238.0" mnemonicParsing="false" onAction="#toLoginForm" text="Đăng nhập" AnchorPane.bottomAnchor="14.799999999999955" />
+            <Label fx:id="warningLabel" alignment="CENTER" layoutX="20.0" layoutY="14.0" prefHeight="18.0" prefWidth="13.0" textFill="#d71313" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+            <TextField fx:id="confirmPasswordTextField" layoutX="57.0" layoutY="134.0" opacity="0.81" promptText="ConfirmPassword" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect></AnchorPane>
+   </children>
+</AnchorPane>
