@@ -2,7 +2,7 @@ package fpsgame.ui;
 
 import java.util.function.Consumer;
 
-import fpsgame.network.packets.GeneralPackets.RegisterRequest;
+import fpsgame.network.protocol.RegisterRequest;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

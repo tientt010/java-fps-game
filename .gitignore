@@ -54,3 +54,4 @@ Thumbs.db
 
 # JavaFX specific
 *.fxbuild
+/src/main/java/example/

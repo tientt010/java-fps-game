@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import fpsgame.network.ClientNetwork;
-import fpsgame.network.ClientResponseHandle;
+import fpsgame.network.ResponseHandler;
+import fpsgame.network.TCPClient;
 import fpsgame.network.User;
-import fpsgame.network.packets.GeneralPackets.LoginResponse;
-import fpsgame.network.packets.GeneralPackets.RegisterResponse;
+import fpsgame.network.protocol.LoginRequest;
+import fpsgame.network.protocol.LoginResponse;
+import fpsgame.network.protocol.RegisterRequest;
+import fpsgame.network.protocol.RegisterResponse;
 import fpsgame.utils.Config;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -20,7 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class MainController implements ClientResponseHandle, Initializable {
+public class MainController implements ResponseHandler, Initializable {
 
     private static Stage stage;
 
@@ -36,13 +38,13 @@ public class MainController implements ClientResponseHandle, Initializable {
 
     private static User user;
 
-    private static ClientNetwork clientNetwork;
+    private static TCPClient tcpClient;
 
     @FXML
     private AnchorPane secondaryAnchorPane;
 
-    public static void setClient(ClientNetwork clientNetwork) {
-        MainController.clientNetwork = clientNetwork;
+    public static void setClient(TCPClient tcpClient) {
+        MainController.tcpClient = tcpClient;
     }
 
     public static void setStage(Stage stage) {
@@ -71,7 +73,7 @@ public class MainController implements ClientResponseHandle, Initializable {
             stage.show();
             return loader;
         } catch (IOException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
             System.out.println(e.getCause());
             System.out.println(e);
         }
@@ -119,18 +121,20 @@ public class MainController implements ClientResponseHandle, Initializable {
         FXMLLoader loader = switchScene("onlineMode.fxml");
         onlineModeController = loader.getController();
         onlineModeController.setUser(user);
-        onlineModeController.setClientNetwork(clientNetwork);
+        onlineModeController.setTCPClient(tcpClient);
 
         System.out.println("Kết nối với server và đăng nhập thành công");
     }
 
     public void switchToLogin(){
-        if(clientNetwork == null){
+        if(tcpClient == null){
             try{
-                clientNetwork = new ClientNetwork(Config.clientTimeOut, Config.serverTcpPort, Config.serverUdpPort, Config.serverAddress);
-                clientNetwork.connectServer();
-                System.out.println("Chuyển sang màn hình đăng nhập");
-                clientNetwork.setResponseHandle(this);
+                tcpClient = new TCPClient();
+                tcpClient.connect(Config.serverAddress, Config.serverTcpPort).thenRun(() -> {
+                    System.out.println("Chuyển sang màn hình đăng nhập");
+                    tcpClient.setLoginResponseHandler(this::handleLoginResponse);
+                    tcpClient.setRegisterResponseHandler(this::handleRegisterResponse);
+                });
             }catch(Exception e){
                 System.out.println("Error connecting to server: " + e.getMessage());
             }
@@ -138,8 +142,9 @@ public class MainController implements ClientResponseHandle, Initializable {
 
         FXMLLoader loader = switchScene("loginScene.fxml");
         loginController = loader.getController();
-        loginController.setOnSubmit((LoginRequest) -> {
-            clientNetwork.sendRequest(LoginRequest);
+        loginController.setOnSubmit((loginRequest) -> {
+            LoginRequest req = (LoginRequest) loginRequest;
+            tcpClient.sendLoginRequest(req.username, req.password);
         });
 
         loginController.setOnSwitchToRegister(() -> {
@@ -150,8 +155,9 @@ public class MainController implements ClientResponseHandle, Initializable {
     public void switchToRegister(){
         FXMLLoader loader = switchScene("registerScene.fxml");
         registerController = loader.getController();
-        registerController.setOnSubmit((RegisterRequest) -> {
-            clientNetwork.sendRequest(RegisterRequest);
+        registerController.setOnSubmit((registerRequest) -> {
+            RegisterRequest req = (RegisterRequest) registerRequest;
+            tcpClient.sendRegisterRequest(req.username, req.password, req.email);
         });
 
         registerController.setOnSwitchToLogin(() -> {

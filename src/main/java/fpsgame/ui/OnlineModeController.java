@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import fpsgame.network.ClientNetwork;
+import fpsgame.network.TCPClient;
 import fpsgame.network.User;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,14 +14,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-/**
- * Controller cho hello.fxml
- * Demonstrates basic JavaFX FXML functionality with module system
- */
 public class OnlineModeController implements Initializable {
 
     private  User user;
-    private ClientNetwork clientNetwork;
+    private TCPClient tcpClient;
 
     @FXML
     private Label titleLabel;
@@ -48,14 +44,7 @@ public class OnlineModeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("GameController initialized successfully!");
 
-        // Update module info
-        String moduleName = this.getClass().getModule().getName();
-        moduleLabel.setText("Module: " + moduleName);
-        
-        // Update status with current time
-        String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-        statusLabel.setText("Status: FXML Loaded at " + currentTime);
-        
+        // Update module info`
         // Set focus to name field
         Platform.runLater(() -> nameField.requestFocus());
     }
@@ -91,9 +80,6 @@ public class OnlineModeController implements Initializable {
         System.out.println("Clear button clicked - fields reset");
     }
 
-    /**
-     * Getter methods for testing or external access
-     */
     public String getCurrentMessage() {
         return messageLabel.getText();
     }
@@ -106,7 +92,7 @@ public class OnlineModeController implements Initializable {
         this.user = user;
     }
 
-    public void setClientNetwork(ClientNetwork clientNetwork) {
-        this.clientNetwork = clientNetwork;
+    public void setTCPClient(TCPClient tcpClient) {
+        this.tcpClient = tcpClient;
     }
 }

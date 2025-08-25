@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fpsgame.ui.OnlineModeController">
+<VBox xmlns="http://javafx.com/javafx/21.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fpsgame.ui.OnlineModeController">
    <children>
       <Label fx:id="titleLabel" text="JavaFX FPS Game - Hello World!" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2E86AB;" />
       

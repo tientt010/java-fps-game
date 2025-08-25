@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
-import fpsgame.network.packets.GeneralPackets.LoginRequest;
+import fpsgame.network.protocol.LoginRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
