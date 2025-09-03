@@ -8,6 +8,7 @@ import fpsgame.network.protocol.LoginRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 
 
 public class LoginController implements Initializable{
@@ -17,12 +18,18 @@ public class LoginController implements Initializable{
     @FXML
     private TextField passwordTextField;
 
+    @FXML
+    private ToggleButton btnLogin;
+    @FXML
+
     private Consumer<LoginRequest> onSubmit;
     private Runnable onSwitchToRegister;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        btnLogin.setSelected(true);
         System.out.println("LoginController initialized");
+
     }
 
     public void onLoginSubmit(){

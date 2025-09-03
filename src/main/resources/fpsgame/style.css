@@ -1,0 +1,82 @@
+/* root background (viền tối xung quanh) */
+.root {
+    -fx-background-color: #111111;
+}
+.my-vbox{
+    -fx-background-color: rgba(50, 50, 50, 0.8);
+    -fx-background-radius: 10;
+}
+/* left panel: mảng tối, bo góc */
+.left-pane {
+    -fx-background-color: rgba(10,10,10,0.85);
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(two-pass-box, rgba(0,0,0,0.7), 20, 0, 0, 4);
+}
+
+/* tiêu đề trắng */
+.label-title {
+    -fx-font-size: 26px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+/* sub text màu xám */
+.label-sub {
+    -fx-font-size: 13px;
+    -fx-text-fill: #9a9a9a;
+    -fx-alignment: center;
+}
+
+
+/* Login button: cam gradient */
+.button-login {
+    -fx-background-color: linear-gradient(#ffb347, #ff7b00);
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 6;
+}
+
+/* sign up link */
+.signup-link {
+    -fx-text-fill: #ffb347;
+}
+
+/* right pane: (nếu muốn overlay tối nhẹ lên ảnh) */
+.right-pane {
+    -fx-background-color: transparent;
+}
+
+/* Nút chung */
+.tab-button {
+    -fx-background-color: #2b2b2b;   /* màu nền tối */
+    -fx-text-fill: #cccccc;          /* màu chữ xám nhạt */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0;        /* góc vuông cho tab */
+    -fx-border-color: #444444;       /* viền nhẹ */
+    -fx-border-width: 0 0 2px 0;     /* chỉ có viền dưới */
+    -fx-border-style: solid;
+    -fx-cursor: hand;
+    -fx-padding: 10 0 10 0;
+}
+
+/* Khi hover */
+.tab-button:hover {
+    -fx-background-color: #3d3d3d;
+    -fx-text-fill: white;
+}
+
+/* Khi được chọn (active tab) */
+.tab-button:selected,
+.tab-button:focused {
+    -fx-background-color: linear-gradient(#ffa500, #ff8c00); /* vàng cam */
+    -fx-text-fill: white; /* chữ trắng nổi bật */
+    -fx-border-color: #ff8c00;
+    -fx-border-width: 0 0 3 0; /* tạo viền dưới  */
+    -fx-effect: dropshadow( gaussian , rgba(255,200,0,0.6) , 8,0,0,0 ); /* hiệu ứng sáng */
+}
+
+

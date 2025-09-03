@@ -69,6 +69,7 @@ public class MainController implements ResponseHandler, Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fpsgame/" + fxmlFile));
             root = loader.load();
             scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/fpsgame/style.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
             return loader;
