@@ -166,21 +166,13 @@ public class TCPClient {
         return future;
     }
 
-    public CompletableFuture<Boolean> sendLoginRequest(String username, String password) {
-        LoginRequest request = new LoginRequest();
-        request.username = username;
-        request.password = password;
-        
-        return sendMessage(request);
+    public CompletableFuture<Boolean> sendLoginRequest(LoginRequest loginRequest) {
+        System.out.println("sendLoginRequest" +  loginRequest);
+        return sendMessage(loginRequest);
     }
     
-    public CompletableFuture<Boolean> sendRegisterRequest(String username, String password, String email) {
-        RegisterRequest request = new RegisterRequest();
-        request.username = username;
-        request.password = password;
-        request.email = email;
-        
-        return sendMessage(request);
+    public CompletableFuture<Boolean> sendRegisterRequest(RegisterRequest registerRequest) {
+        return sendMessage(registerRequest);
     }
     
     public CompletableFuture<Boolean> sendTextMessage(String message) {

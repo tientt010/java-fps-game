@@ -14,6 +14,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("mainScene.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/fpsgame/style.css").toExternalForm());
         MainController.setStage(stage);
         stage.setResizable(false);
         stage.setTitle("FPS Game");

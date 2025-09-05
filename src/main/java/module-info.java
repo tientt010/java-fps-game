@@ -21,7 +21,8 @@ module fpsgame {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
-    
+//    requires fpsgame;
+
     exports fpsgame;
     exports fpsgame.ui;
     exports fpsgame.network;

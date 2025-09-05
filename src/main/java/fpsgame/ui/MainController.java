@@ -22,6 +22,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+
+
 public class MainController implements ResponseHandler, Initializable {
 
     private static Stage stage;
@@ -32,8 +34,7 @@ public class MainController implements ResponseHandler, Initializable {
 
     
 
-    private static LoginController loginController;
-    private static RegisterController registerController;
+    private static AuthController authController;
     private static OnlineModeController onlineModeController;
 
     private static User user;
@@ -71,6 +72,7 @@ public class MainController implements ResponseHandler, Initializable {
             scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/fpsgame/style.css").toExternalForm());
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
             return loader;
         } catch (IOException e) {
@@ -85,6 +87,9 @@ public class MainController implements ResponseHandler, Initializable {
     public void handleLoginResponse(LoginResponse response) {
         if(!response.isSuccess) {
             System.out.println("Login failed: " + response.message);
+            Platform.runLater(() -> {
+                authController.showError(authController.getLblLoginError(), response.message);
+            });
             return;
         }
         System.out.println(response);
@@ -102,13 +107,16 @@ public class MainController implements ResponseHandler, Initializable {
     public void handleRegisterResponse(RegisterResponse response) {
         if(!response.isSuccess) {
             System.out.println("Register failed: " + response.message);
+            Platform.runLater(() -> {
+                authController.showError(authController.getLblRegisterError(), response.message);
+            });
             return;
         }
         System.out.println(response);
         new Thread(() -> {
             Platform.runLater(() -> {
                 System.out.println("Register successful: " + response.message);
-                switchToLogin();
+                switchToAuth();
             });
         }).start();
     }
@@ -127,44 +135,45 @@ public class MainController implements ResponseHandler, Initializable {
         System.out.println("Kết nối với server và đăng nhập thành công");
     }
 
-    public void switchToLogin(){
-        if(tcpClient == null){
-            try{
-                tcpClient = new TCPClient();
-                tcpClient.connect(Config.serverAddress, Config.serverTcpPort).thenRun(() -> {
-                    System.out.println("Chuyển sang màn hình đăng nhập");
-                    tcpClient.setLoginResponseHandler(this::handleLoginResponse);
-                    tcpClient.setRegisterResponseHandler(this::handleRegisterResponse);
-                });
-            }catch(Exception e){
-                System.out.println("Error connecting to server: " + e.getMessage());
+    public void switchToAuth(){
+        new Thread(() -> {
+            if(tcpClient == null){
+                try{
+                    tcpClient = new TCPClient();
+                    tcpClient.connect(Config.serverAddress, Config.serverTcpPort).thenRun(() -> {
+                        System.out.println("Chuyển sang màn hình đăng nhập");
+                        tcpClient.setLoginResponseHandler(this::handleLoginResponse);
+                        tcpClient.setRegisterResponseHandler(this::handleRegisterResponse);
+                    });
+                }catch(Exception e){
+                    System.out.println("Error connecting to server: " + e.getMessage());
+                }
             }
-        }
+        }).start();
 
-        FXMLLoader loader = switchScene("loginScene.fxml");
-        loginController = loader.getController();
-        loginController.setOnSubmit((loginRequest) -> {
-            LoginRequest req = (LoginRequest) loginRequest;
-            tcpClient.sendLoginRequest(req.username, req.password);
-        });
-
-        loginController.setOnSwitchToRegister(() -> {
-            switchToRegister();
+        FXMLLoader loader = switchScene("authScene.fxml");
+        authController = loader.getController();
+        authController.setOnSubmit((request) -> {
+            if (request instanceof LoginRequest req) {
+                tcpClient.sendLoginRequest(req);
+            }else if (request instanceof  RegisterRequest req){
+                tcpClient.sendRegisterRequest(req);
+            }
         });
     }
 
-    public void switchToRegister(){
-        FXMLLoader loader = switchScene("registerScene.fxml");
-        registerController = loader.getController();
-        registerController.setOnSubmit((registerRequest) -> {
-            RegisterRequest req = (RegisterRequest) registerRequest;
-            tcpClient.sendRegisterRequest(req.username, req.password, req.email);
-        });
-
-        registerController.setOnSwitchToLogin(() -> {
-            switchToLogin();
-        });
-        
-    }
+//    public void switchToRegister(){
+//        FXMLLoader loader = switchScene("registerScene.fxml");
+//        registerController = loader.getController();
+//        registerController.setOnSubmit((registerRequest) -> {
+//            RegisterRequest req = (RegisterRequest) registerRequest;
+//            tcpClient.sendRegisterRequest(req.username, req.password, req.email);
+//        });
+//
+//        registerController.setOnSwitchToLogin(() -> {
+//            switchToLogin();
+//        });
+//
+//    }
 
 }
