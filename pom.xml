@@ -1,158 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>fpsgame</groupId>
-  <artifactId>java-fps-game</artifactId>
-  <version>0.0.1</version>
+    <groupId>fpsgame</groupId>
+    <artifactId>java-fps-game</artifactId>
+    <version>0.0.1</version>
+    <name>java-fps-game</name>
 
-  <name>java-fps-game</name>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <javafx.version>21.0.4</javafx.version>
+        <netty.version>4.1.115.Final</netty.version>
+        <jackson.version>2.17.2</jackson.version>
+        <libgdx.version>1.12.1</libgdx.version>
+    </properties>
 
-  <dependencies>
-    <!-- Netty modules riêng lẻ để tương thích với module system -->
-    <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-transport</artifactId>
-      <version>4.1.115.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-codec</artifactId>
-      <version>4.1.115.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-handler</artifactId>
-      <version>4.1.115.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-buffer</artifactId>
-      <version>4.1.115.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-common</artifactId>
-      <version>4.1.115.Final</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.17.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-      <version>2.17.2</version>
-    </dependency>
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-controls</artifactId>
-        <version>21.0.4</version>
-    </dependency>
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-fxml</artifactId>
-        <version>21.0.4</version>
-    </dependency>
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-media</artifactId>
-        <version>21.0.4</version>
-    </dependency>
-    <dependency>
-        <groupId>com.badlogicgames.gdx</groupId>
-        <artifactId>gdx</artifactId>
-        <version>1.12.1</version>
-        <exclusions>
-            <exclusion>
-                <groupId>com.badlogicgames.gdx</groupId>
-                <artifactId>gdx-jnigen-loader</artifactId>
-            </exclusion>
-        </exclusions>
-    </dependency>        
-  </dependencies>
+    <dependencies>
+        <!-- Netty Dependencies -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-handler</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-buffer</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-common</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
 
-   <build>
-            <resources>
-                <resource>
-                    <directory>src/main/resources</directory>
-                </resource>
-            </resources>
+        <!-- Jackson JSON Dependencies -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!-- JavaFX Dependencies -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- LibGDX Dependencies -->
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx</artifactId>
+            <version>${libgdx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-backend-lwjgl3</artifactId>
+            <version>${libgdx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-platform</artifactId>
+            <version>${libgdx.version}</version>
+            <classifier>natives-desktop</classifier>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
 
         <plugins>
-        
+            <!-- Compiler Plugin - Simplified for classpath mode -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
                     <release>21</release>
-                    <compilerArgs>
-                        <!-- Allow access to unnamed modules -->
-                        <arg>--add-reads</arg>
-                        <arg>fpsgame=ALL-UNNAMED</arg>
-                        
-                        <!-- Export Netty packages to our module -->
-                        <arg>--add-exports</arg>
-                        <arg>io.netty.all/io.netty.handler.codec=fpsgame</arg>
-                        <arg>--add-exports</arg>
-                        <arg>io.netty.all/io.netty.bootstrap=fpsgame</arg>
-                        <arg>--add-exports</arg>
-                        <arg>io.netty.all/io.netty.channel=fpsgame</arg>
-                        <arg>--add-exports</arg>
-                        <arg>io.netty.all/io.netty.channel.nio=fpsgame</arg>
-                        <arg>--add-exports</arg>
-                        <arg>io.netty.all/io.netty.channel.socket.nio=fpsgame</arg>
-                        
-                        <!-- Export LibGDX packages -->
-                        <arg>--add-exports</arg>
-                        <arg>gdx/com.badlogic.gdx.utils=fpsgame</arg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
+
+            <!-- JavaFX Plugin - Simplified for classpath mode -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
-                <executions>
-                    <execution>
-                        <!-- Default configuration for running -->
-                        <!-- Usage: mvn clean javafx:run -->
-                        <id>default-cli</id>
-                        <configuration>
-                            <mainClass>fpsgame.App</mainClass>
-                            <options>
-                                <!-- Module system options -->
-                                <option>--add-reads</option>
-                                <option>fpsgame=ALL-UNNAMED</option>
-                                
-                                <!-- Opens for JavaFX -->
-                                <option>--add-opens</option>
-                                <option>java.base/java.lang=ALL-UNNAMED</option>
-                                <option>--add-opens</option>
-                                <option>javafx.graphics/com.sun.javafx.application=fpsgame</option>
-                                
-                                <!-- Opens for Netty -->
-                                <option>--add-opens</option>
-                                <option>io.netty.all/io.netty.handler.codec=fpsgame</option>
-                                <option>--add-opens</option>
-                                <option>io.netty.all/io.netty.bootstrap=fpsgame</option>
-                                <option>--add-opens</option>
-                                <option>io.netty.all/io.netty.channel=fpsgame</option>
-                            </options>
-                        </configuration>
-                    </execution> 
-
-                </executions>
+                <configuration>
+                    <mainClass>fpsgame.App</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

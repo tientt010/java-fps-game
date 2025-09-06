@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox prefHeight="600.0" prefWidth="1000.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fpsgame.ui.LoginController">
+<HBox prefHeight="1080.0" prefWidth="1920.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fpsgame.ui.LoginController">
    <fx:define>
        <ToggleGroup fx:id="authGroup" />
    </fx:define>
@@ -20,8 +20,11 @@
                <children>
                   <HBox prefHeight="35.0">
                      <children>
-                        <ToggleButton fx:id="btnLogin" toggleGroup="$authGroup" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="tab-button" text="Login" HBox.hgrow="ALWAYS"/>
-                        <ToggleButton fx:id="btnRegister" toggleGroup="$authGroup" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerFormController" styleClass="tab-button" text="Register"  HBox.hgrow="ALWAYS" />
+                        <ToggleButton fx:id="btnLogin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="tab-button" text="Login" HBox.hgrow="ALWAYS">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="authGroup" />
+                           </toggleGroup></ToggleButton>
+                        <ToggleButton fx:id="btnRegister" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerFormController" styleClass="tab-button" text="Register" toggleGroup="$authGroup" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <Label styleClass="label-title" text="LET'S GO, SOLDIER!">
@@ -53,7 +56,7 @@
                            <padding>
                               <Insets top="5.0" />
                            </padding></Label>
-                        <Hyperlink styleClass="signup-link" text="Sign up" onAction="#registerFormController">
+                        <Hyperlink onAction="#registerFormController" styleClass="signup-link" text="Sign up">
                            <padding>
                               <Insets top="5.0" />
                            </padding>

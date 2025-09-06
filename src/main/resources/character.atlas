@@ -1,0 +1,17 @@
+character.png
+size: 2048,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+body_1
+  rotate: false
+  xy: 30,40
+  size: 270,200
+arm_left_long_1
+  rotate: false
+  xy: 330,40
+  size: 250,140
+arm_right_short_1
+  rotate: false
+  xy: 890,40
+  size: 200,110

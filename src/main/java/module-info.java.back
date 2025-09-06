@@ -1,4 +1,3 @@
-
 module fpsgame {
     // Java Platform modules
     requires java.base;
@@ -12,25 +11,32 @@ module fpsgame {
     requires javafx.base;
     requires javafx.graphics;
     
+    // Netty modules
     requires io.netty.transport;
     requires io.netty.codec;
     requires io.netty.handler;
     requires io.netty.buffer;
     requires io.netty.common;
     
+    // Jackson modules
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
     
+    // Exports
     exports fpsgame;
     exports fpsgame.ui;
     exports fpsgame.network;
     exports fpsgame.network.protocol;
     exports fpsgame.utils;
+    exports fpsgame.game;
     
+    // Opens cho JavaFX FXML
     opens fpsgame to javafx.fxml;
     opens fpsgame.ui to javafx.fxml, javafx.base;
     opens fpsgame.network.protocol to com.fasterxml.jackson.databind;
-    
     opens fpsgame.utils to javafx.fxml, com.fasterxml.jackson.databind;
+    
+    // Opens cho LibGDX - Allow all unnamed modules access
+    opens fpsgame.game;
 }
