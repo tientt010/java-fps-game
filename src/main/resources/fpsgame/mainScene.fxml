@@ -1,18 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fpsgame.ui.MainController">
    <children>
-      <AnchorPane layoutX="212.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(38, 36, 33, 0.5);">
-         <effect>
-            <DropShadow />
-         </effect>
+      <ImageView fitHeight="600.0" fitWidth="1008.0" layoutX="-1.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../image/mainBground.png" />
+         </image></ImageView>
+      <VBox alignment="CENTER" layoutX="350.0" layoutY="320.0" prefHeight="200.0" prefWidth="300.0" spacing="24.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="320.0">
          <children>
-            <Button layoutX="49.0" layoutY="33.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="102.0" text="Game Offline" />
-            <Button fx:id="onlineModeButton" layoutX="49.0" layoutY="109.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="38.0" prefWidth="102.0" text="Game Online" textAlignment="CENTER" />
-         </children></AnchorPane>
+             <Button prefHeight="60" prefWidth="300" styleClass="menu-button" onAction="#switchToAuth">
+                 <graphic>
+                     <HBox alignment="CENTER_LEFT" spacing="20.0">
+                         <children>
+                             <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                 <image>
+                                     <Image url="@../image/onlinegame.png" />
+                                 </image>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                             </ImageView>
+                             <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="27.0" prefWidth="150.0" styleClass="menu-label-online" text="GAME ONLINE" textAlignment="CENTER" HBox.hgrow="ALWAYS" >
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin></Label>
+                         </children>
+                     </HBox>
+                 </graphic>
+             </Button>
+             <Button prefHeight="60" prefWidth="300" styleClass="menu-button">
+                 <graphic>
+                     <HBox alignment="CENTER_LEFT" spacing="20.0">
+                         <children>
+                             <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                 <image>
+                                     <Image url="@../image/offlinegame.png" />
+                                 </image>
+                             </ImageView>
+                             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="150.0" styleClass="menu-label-offline" text="GAME OFLINE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin></Label>
+                         </children>
+                     </HBox>
+                 </graphic>
+             </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

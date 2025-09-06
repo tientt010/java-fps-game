@@ -80,3 +80,41 @@
 }
 
 
+/* CSS màn hình chính */
+.menu-button {
+    -fx-background-color: linear-gradient(#ff9900, #ff6600); /* cam -> cam đậm */
+    -fx-background-radius: 15;
+    -fx-border-color: #ffcc66;
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+    -fx-cursor: hand;
+    -fx-padding: 12 25 12 25;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10,0,0,5);
+}
+
+.menu-button:hover {
+    -fx-background-color: linear-gradient(#ffcc33, #ff9900); /* vàng -> cam */
+}
+
+.menu-button:pressed {
+    -fx-background-color: #cc5200; /* cam cháy */
+}
+
+/* Label của nút Online */
+.menu-label-online {
+    -fx-text-fill: #111111;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    /*-fx-effect: dropshadow(gaussian, rgba(255, 180, 50, 0.9), 15, 0.8, 0, 0); */
+}
+
+/* Label của nút Offline */
+.menu-label-offline {
+    -fx-text-fill: #111111;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    /*-fx-effect: dropshadow(gaussian, rgba(255, 80, 50, 0.9), 15, 0.8, 0, 0); */
+}
